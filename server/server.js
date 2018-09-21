@@ -5,14 +5,14 @@ var mongo = require('mongoose');
 
 let connectionString = "";
 let frontendIp = "";
-if(ENV['connectionString'] == null || ENV['connectionString'] == ""){
+if(process.env.connectionString == null || process.env.connectionString == ""){
     var fs = require("fs");
     var config = JSON.parse(fs.readFileSync("config.json"));
     connectionString = config.connectionString; 
     frontendIp = config.frontendIp; 
 } else{
-    connectionString = ENV['connectionString'];
-    frontendIp = ENV['frontendIp'];
+    connectionString = process.env.connectionString;
+    frontendIp = process.env.frontendIp;
 }
 
 
