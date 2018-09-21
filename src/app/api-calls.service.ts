@@ -13,18 +13,19 @@ export class ApiCallsService {
 
   constructor(private http: HttpClient) {  }
 
+  url = "https://dry-lake-13557.herokuapp.com/"
   saveMes(myMes){
-    return this.http.post('http://localhost:8080/api/saveMes', myMes)
+    return this.http.post(this.url + 'api/saveMes', myMes)
       .map((response: Response) => response)
   }
 
   getMes(id){
-    return this.http.get('http://localhost:8080/api/getMes/' + id)
+    return this.http.get(this.url + 'api/getMes/' + id)
       .map((response: Response) => response)
   }
 
   deleteMes(id){
-    return this.http.get('http://localhost:8080/api/deleteMes/' + id)
+    return this.http.get(this.url + 'api/deleteMes/' + id)
       .map((response: Response) => response)
   }
 
