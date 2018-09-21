@@ -15,6 +15,8 @@ export class DisplayMessageComponent implements OnInit {
   hash = ""; 
   decryptedText  = "";
   hasAccepted = false;
+  statusInfo = "Message decrypted successfully!"
+  
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
@@ -28,7 +30,6 @@ export class DisplayMessageComponent implements OnInit {
   }
 
   getMes(){
-    
     this.apiCalls.getMes(this.id)
      .subscribe(data => {
        try{
@@ -42,6 +43,7 @@ export class DisplayMessageComponent implements OnInit {
           });
        } catch (e){
         this.decryptedText = "Not valid anymore!";
+        this.statusInfo = "Expired";
        }
       },
       error => {this.decryptedText = "Not found!"});

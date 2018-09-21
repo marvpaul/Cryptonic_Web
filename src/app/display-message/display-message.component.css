@@ -1,0 +1,12 @@
+.decrypted-text{
+    width: 80%;
+    -webkit-box-shadow: inset 0px 0px 21px -1px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 0px 21px -1px rgba(255,255,255,1);
+    box-shadow: inset 0px 0px 10px 0px rgba(82, 81, 54, 1);
+    background: #2d2c29 !important;
+    color: white !important;
+    padding: 1%;
+    border-radius: 5px;
+    border: 10px;
+    display: inline-block;
+}

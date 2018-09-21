@@ -4,11 +4,15 @@
     <div [ngSwitch]='this.hasAccepted'>
       <div *ngSwitchCase='true'>
         <div class="card-header">
-            <span class="badge bg-warning">1</span> Your message was encrypted successfully!
+            <span class="badge bg-warning">1</span> {{statusInfo}}
         </div>
         <div class="card-body">
           <h5 class="card-title">Message</h5>
-          <p class="card-text">{{decryptedText}}</p>
+          <div class="card-text"> 
+            <div class="decrypted-text">
+                {{decryptedText}}
+            </div>
+          </div><br>
           <a href="/" mat-raised-button color="primary" >Create another message</a>
         </div>
       </div>

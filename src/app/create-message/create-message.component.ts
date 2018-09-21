@@ -11,6 +11,9 @@ export class CreateMessageComponent implements OnInit {
   message = ""; 
   link = ""; 
 
+
+  lastCreatedMess = null;
+
   constructor(private apiCalls: ApiCallsService) {
     
    }
@@ -34,12 +37,19 @@ export class CreateMessageComponent implements OnInit {
   }
 
   sendMes(){
-    var key = String(this.generateKey(String(CryptoJS.MD5(this.message))));
-    var cryptedText = CryptoJS.AES.encrypt(this.message, key);
-    this.apiCalls.saveMes({message : String(cryptedText)} )
-      .subscribe(data => {
-        this.link = 'http:localhost:4200/message/' + (<any>data).data + '/' + key;
-      });
+    //Check if there is a certain time between last send mes and this one
+    if(this.lastCreatedMess == null || (Date.now() - this.lastCreatedMess)/1000 > 10 ){
+      this.lastCreatedMess = Date.now();
+      var key = String(this.generateKey(Math.random().toString()));
+      var cryptedText = CryptoJS.AES.encrypt(this.message, key);
+      this.apiCalls.saveMes({message : String(cryptedText)} )
+        .subscribe(data => {
+          this.link = window.location.href + 'message/' + (<any>data).data + '/' + key;
+        });
+    } else{
+      alert("Please wait 10 sec between each message!");
+    }
+    
   }
 
   generateKey(p){
