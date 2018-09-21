@@ -2,8 +2,19 @@ var express = require('express');
 var path = require('path'); 
 var bodyParser = require('body-parser'); 
 var mongo = require('mongoose'); 
-var fs = require("fs");
-var config = JSON.parse(fs.readFileSync("config.json"));
+
+let connectionString = "";
+let frontendIp = "";
+if(ENV['connectionString'] == null || ENV['connectionString'] == ""){
+    var fs = require("fs");
+    var config = JSON.parse(fs.readFileSync("config.json"));
+    connectionString = config.connectionString; 
+    frontendIp = config.frontendIp; 
+} else{
+    connectionString = ENV['connectionString'];
+    frontendIp = ENV['frontendIp'];
+}
+
 
 var db = mongo.connect(config.connectionString, function(err, response){
     if(err){console.log(err);}

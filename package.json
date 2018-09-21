@@ -54,5 +54,18 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvpaul/Cryptonic_Web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvpaul/Cryptonic_Web/issues"
+  },
+  "homepage": "https://github.com/marvpaul/Cryptonic_Web#readme"
 }
