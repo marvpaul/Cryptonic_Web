@@ -79,3 +79,42 @@ mat-form-field.input{
     background: linear-gradient(to right, #2d2c29 0%,#5b5b5b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d2c29', endColorstr='#5b5b5b',GradientType=1 ); /* IE6-9 */
 }
+
+.swal-modal{
+    background: #2d2c29;
+}
+.swal-text{
+    color: white;
+}
+
+.swal-title{
+    color: white;
+}
+
+
+.swal-button{
+    background-color: #3f51b5;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    border: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    min-width: 88px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 2px;
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
+    transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1)
+}
