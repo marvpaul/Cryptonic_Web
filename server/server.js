@@ -16,7 +16,7 @@ if(process.env.connectionString == null || process.env.connectionString == ""){
 }
 
 
-var db = mongo.connect(config.connectionString, function(err, response){
+var db = mongo.connect(connectionString, function(err, response){
     if(err){console.log(err);}
     else{ console.log("Connected to mongo db") }
 });
