@@ -9,9 +9,9 @@ footer{
 }
 
 %shadow{
-    -webkit-box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.62);
-    -moz-box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.62);
-    box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.62);
+    -webkit-box-shadow: 0px 4px 10px 0px rgba(221, 131, 131, 0.62);
+    -moz-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.62);
+    box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.62);
   }
 
 
@@ -23,6 +23,7 @@ nav, footer{
 
 body{
     margin: 0; 
+    background: #ffd905;
 }
 
 .content{
@@ -31,7 +32,23 @@ body{
 
 .text-area-input{
     width: 100%; 
-    height: 300px; 
+    height: 25vh; 
+}
+
+textarea{
+    width: 80%;
+    -webkit-box-shadow: inset 0px 0px 21px -1px rgba(255,255,255,1);
+    -moz-box-shadow: inset 0px 0px 21px -1px rgba(255,255,255,1);
+    box-shadow: inset 0px 0px 10px 0px rgba(82, 81, 54, 1);
+    background: #2d2c29 !important;
+    color: white !important;
+    padding: 1%;
+    border-radius: 5px;
+    border: 10px;
+}
+
+.mat-form-field-label{
+    color: white !important; 
 }
 
 mat-form-field.input{
@@ -42,4 +59,23 @@ mat-form-field.input{
     display:block !important;
     float: left;
     width: 100%;
+}
+
+.card{
+    border: none;
+    color: white;
+    @extend %shadow;
+}
+
+.card-body{
+    background: gray;
+}
+    
+
+.card-header{
+    background: #2d2c29; /* Old browsers */
+    background: -moz-linear-gradient(left, #2d2c29 0%, #5b5b5b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #2d2c29 0%,#5b5b5b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #2d2c29 0%,#5b5b5b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d2c29', endColorstr='#5b5b5b',GradientType=1 ); /* IE6-9 */
 }

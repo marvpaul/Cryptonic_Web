@@ -1,5 +1,5 @@
 <div class="content">
-    <div class="card">
+    <div class="card animated fadeInLeft">
         <div class="card-header">
           <h1> Welcome to Cryptonic</h1>
       </div>
@@ -16,14 +16,14 @@
     <br>
     
     <div *ngIf="this.link != ''">
-          <div class="card">
+          <div class="card " [ngClass]="{'animated fadeInUp': this.link != '' }">
               <div class="card-header">
                       <span class="badge bg-warning">1</span> Your message was encrypted successfully!
               </div>
               <div class="card-body">
                 <h5 class="card-title">Your link</h5>
-                <p class="card-text">{{this.link}}</p>
-                <a href="#" class="btn btn-primary" (click)="this.copyLink()">Copy</a>
+                <input class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
+                <button mat-raised-button color="primary" (click)="this.copyLink()">Copy</button>
               </div>
           </div>
     </div>
