@@ -1,0 +1,26 @@
+<div class="card">
+
+  <div [ngSwitch]='this.hasAccepted'>
+    <div *ngSwitchCase='true'>
+      <div class="card-header">
+          <span class="badge bg-warning">1</span> Your message was encrypted successfully!
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Message</h5>
+        <p class="card-text">{{decryptedText}}</p>
+        <a href="/" class="btn btn-primary">Create another message</a>
+      </div>
+    </div>
+
+    <div *ngSwitchCase='false'>
+        <div class="card-header">
+            <span class="badge bg-warning">1</span> Really wanna to read the message?
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Please comfirm</h5>
+          <button (click)="this.accept()" class="btn btn-primary">Yes, I want to read!</button>
+        </div>
+      </div>
+  </div>
+    
+</div>

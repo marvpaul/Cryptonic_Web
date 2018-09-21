@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+          <h1> Welcome to Cryptonic</h1>
+      </div>
+      <div class="card-body">
+          Enter a text to encrypt!
+        <form>
+          <mat-form-field class="input">
+            <textarea matInput placeholder="Text to encrypt" class="text-area-input" [(ngModel)]="message" name="input"></textarea>
+          </mat-form-field>
+        </form>
+        <button mat-raised-button color="primary" (click)="sendMes()" >Encrypt!</button>
+      </div>
+    </div>
+    <br>
+    
+    <div *ngIf="this.link != ''">
+          <div class="card">
+              <div class="card-header">
+                      <span class="badge bg-warning">1</span> Your message was encrypted successfully!
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Your link</h5>
+                <p class="card-text">{{this.link}}</p>
+                <a href="#" class="btn btn-primary" (click)="this.copyLink()">Copy</a>
+              </div>
+          </div>
+    </div>
+    
+</div>
