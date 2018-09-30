@@ -15,17 +15,26 @@
     </div>
     <br>
     
-    <div *ngIf="this.link != ''">
-          <div class="card " [ngClass]="{'animated fadeInUp': this.link != '' }"  id="mess-link-box">
-              <div class="card-header">
-                      <span class="badge bg-warning">1</span> Your message was encrypted successfully!
+    <div >
+          <div class="card " [ngClass]="{'animated fadeInUp': this.link != '' || this.loadingMessage}"  id="mess-link-box">
+                <div class="card-header" *ngIf="this.link != ''">
+                  <span class="badge bg-warning">1</span> Your message was encrypted successfully!
+                </div>
+
+                <div class="card-header" *ngIf="this.loadingMessage">
+                  Loading
+                </div>
+
+                <div class="card-body" *ngIf="this.link != ''">
+                  <h5 class="card-title">Your link</h5>
+                  <input  #myInput class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
+                  <button mat-raised-button color="primary" (click)="this.copyToClipboard(myInput)">Copy</button>
+                </div>
               </div>
-              <div class="card-body">
-                <h5 class="card-title">Your link</h5>
-                <input  #myInput class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
-                <button mat-raised-button color="primary" (click)="this.copyToClipboard(myInput)">Copy</button>
+              <div class="card-body" *ngIf="this.loadingMessage">
+                  <div class="lds-ripple"><div></div><div></div></div>
               </div>
-          </div>
+              
     </div>
     
 </div>

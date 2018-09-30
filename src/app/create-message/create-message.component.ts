@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 export class CreateMessageComponent implements OnInit {
   message = ""; 
   link = ""; 
+  loadingMessage = false;
 
 
   lastCreatedMess = null;
@@ -87,15 +88,19 @@ export class CreateMessageComponent implements OnInit {
     //Check if there is a certain time between last send mes and this one
     if(this.lastCreatedMess == null || (Date.now() - this.lastCreatedMess)/1000 > 10 ){
       if(this.message != ""){
+        this.loadingMessage = true; 
         this.lastCreatedMess = Date.now();
+        setTimeout(function() {
+          window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        }, 300);
       var key = String(this.generateKey(Math.random().toString()));
       var cryptedText = CryptoJS.AES.encrypt(this.message, key);
       this.apiCalls.saveMes({message : String(cryptedText)} )
         .subscribe(data => {
+          
           this.link = window.location.href + 'message/' + (<any>data).data + '/' + key;
-          setTimeout(function() {
-            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-          }, 1000);
+          this.loadingMessage = false; 
+          
           
         });
       } else{
