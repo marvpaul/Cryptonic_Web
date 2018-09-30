@@ -23,7 +23,7 @@ nav, footer{
 
 body{
     margin: 0; 
-    background: #ffd905;
+    background: #f77833;
 }
 
 .content{
@@ -66,6 +66,14 @@ mat-form-field.input{
     color: white;
     @extend %shadow;
 }
+
+@media screen and (min-width : 991px) {
+    .content{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+}
+
 
 .card-body{
     background: gray;
@@ -117,4 +125,126 @@ mat-form-field.input{
     overflow: visible;
     transform: translate3d(0, 0, 0);
     transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1)
+}
+
+
+html,
+body,
+#bubbles { height: 100% }
+#bubbles {     width: 100%;
+    position: absolute;
+    z-index: -1;}
+.bubble {
+    filter: blur(5px);
+    width: 60px;
+    height: 60px;
+    background: gray;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    position: absolute;
+}
+
+.x1 {
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.2;
+    -webkit-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -o-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+
+.x2 {
+    left: 20%;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.5;
+    -webkit-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    -o-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+}
+.x3 {
+    left: 40%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3;
+    -webkit-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    -o-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+}
+.x4 {
+    left: 75%;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.35;
+    -webkit-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    -o-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+}
+.x5 {
+    left: 5%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3; 
+    -webkit-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    -moz-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    -o-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+}
+@-webkit-keyframes moveclouds { 
+    0% { 
+        top: 100%;
+    }
+    100% { 
+        top: 0%;
+    }
+}
+
+@-webkit-keyframes sideWays { 
+    0% { 
+        margin-left: 0%;
+    }
+    100% { 
+        margin-left:7%;
+    }
+}
+
+@-moz-keyframes moveclouds {     
+    0% { 
+        top: 100%;
+    }
+
+    100% { 
+        top: 0%;
+    }
+}
+
+@-moz-keyframes sideWays {
+    0% {
+        margin-left:0%;
+    }
+    100% {
+        margin-left:7%;
+    }
+}
+@-o-keyframes moveclouds {
+    0% { 
+        top: 100%;
+    }
+    100% { 
+        top: 0%;
+    }
+}
+
+@-o-keyframes sideWays {
+    0% {
+        margin-left:0%;
+    }
+    100% {
+        margin-left:7%;
+    }
 }
