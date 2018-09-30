@@ -100,7 +100,7 @@ export class CreateMessageComponent implements OnInit {
           
           this.link = window.location.href + 'message/' + (<any>data).data + '/' + key;
           this.loadingMessage = false; 
-          
+          window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
           
         });
       } else{
