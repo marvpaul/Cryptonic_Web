@@ -19,6 +19,43 @@ export class CreateMessageComponent implements OnInit {
     
    }
 
+   copyToClipboard(el) {
+
+      // resolve the element
+      el = (typeof el === 'string') ? document.querySelector(el) : el;
+
+      // handle iOS as a special case
+      if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+
+          // save current contentEditable/readOnly status
+          var editable = el.contentEditable;
+          var readOnly = el.readOnly;
+
+          // convert to editable with readonly to stop iOS keyboard opening
+          el.contentEditable = true;
+          el.readOnly = true;
+
+          // create a selectable range
+          var range = document.createRange();
+          range.selectNodeContents(el);
+
+          // select the range
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          el.setSelectionRange(0, 999999);
+
+          // restore contentEditable/readOnly to original state
+          el.contentEditable = editable;
+          el.readOnly = readOnly;
+      }
+      else {
+          el.select();
+      }
+
+      // execute copy command
+      document.execCommand('copy');
+  }
    copyLink(){
     let selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
@@ -37,6 +74,15 @@ export class CreateMessageComponent implements OnInit {
   ngOnInit() {
   }
 
+  sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
+
   sendMes(){
     //Check if there is a certain time between last send mes and this one
     if(this.lastCreatedMess == null || (Date.now() - this.lastCreatedMess)/1000 > 10 ){
@@ -47,6 +93,10 @@ export class CreateMessageComponent implements OnInit {
       this.apiCalls.saveMes({message : String(cryptedText)} )
         .subscribe(data => {
           this.link = window.location.href + 'message/' + (<any>data).data + '/' + key;
+          setTimeout(function() {
+            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+          }, 1000);
+          
         });
       } else{
         swal("No text", "Please enter a text before sending a message!", "error");
