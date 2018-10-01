@@ -3,30 +3,36 @@
 
     <div [ngSwitch]='this.hasAccepted'>
       <div *ngSwitchCase='true'>
-        <div class="card-header">
-            <span class="badge bg-warning">1</span> {{statusInfo}}
+        <div class="card-header" [innerHTML]="this.statusInfo">
         </div>
         <div class="card-body">
           <h5 class="card-title">Message</h5>
-          <div class="card-text"> 
-            <div class="decrypted-text">
+          <div class="card-text">
+            <div class="decrypted-text" *ngIf="!this.loading"> 
                 {{decryptedText}}
             </div>
+            <div *ngIf="this.loading"> 
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                  </div>
+              </div>
           </div><br>
-          <a href="/" mat-raised-button color="primary" >Create another message</a>
+          <a href="/" mat-raised-button color="primary">Create another message</a>
         </div>
       </div>
 
       <div *ngSwitchCase='false'>
-          <div class="card-header">
-              <span class="badge bg-warning">1</span> Really wanna to read the message?
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Please comfirm</h5>
-            <button mat-raised-button color="primary"(click)="this.accept()" class="btn btn-primary">Yes, I want to read!</button>
-          </div>
+        <div class="card-header">
+          <span class="badge bg-warning">1</span> Really wanna to read the message?
         </div>
+        <div class="card-body">
+          <h5 class="card-title">Please comfirm</h5>
+          <button mat-raised-button color="primary" (click)="this.accept()" class="btn btn-primary">Yes, I want to
+            read!</button>
+        </div>
+      </div>
     </div>
-      
+
   </div>
 </div>

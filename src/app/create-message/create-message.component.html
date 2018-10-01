@@ -1,40 +1,43 @@
 <div class="content">
-    <div class="card animated fadeInLeft">
-        <div class="card-header">
-          <h1> Welcome to Cryptonic</h1>
+  <div class="card animated fadeInLeft">
+    <div class="card-header">
+      <h1> Welcome to Cryptonic</h1>
+    </div>
+    <div class="card-body">
+      Enter a text to encrypt!
+      <form>
+        <mat-form-field class="input">
+          <textarea matInput placeholder="Text to encrypt" class="text-area-input" [(ngModel)]="message" name="input"></textarea>
+        </mat-form-field>
+      </form>
+      <button mat-raised-button color="primary" (click)="sendMes()">Encrypt!</button>
+    </div>
+  </div>
+  <br>
+
+  <div>
+    <div class="card " [ngClass]="{'animated fadeInUp': this.link != '' || this.loadingMessage}" id="mess-link-box">
+      <div class="card-header" *ngIf="this.link != ''">
+        <span class="badge bg-warning">1</span> Your message was encrypted successfully!
       </div>
-      <div class="card-body">
-          Enter a text to encrypt!
-        <form>
-          <mat-form-field class="input">
-            <textarea matInput placeholder="Text to encrypt" class="text-area-input" [(ngModel)]="message" name="input"></textarea>
-          </mat-form-field>
-        </form>
-        <button mat-raised-button color="primary" (click)="sendMes()" >Encrypt!</button>
+
+      <div class="card-header" *ngIf="this.loadingMessage">
+        Loading
+      </div>
+
+      <div class="card-body" *ngIf="this.link != ''">
+        <h5 class="card-title">Your link</h5>
+        <input #myInput class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
+        <button mat-raised-button color="primary" (click)="this.copyToClipboard(myInput)">Copy</button>
       </div>
     </div>
-    <br>
-    
-    <div >
-          <div class="card " [ngClass]="{'animated fadeInUp': this.link != '' || this.loadingMessage}"  id="mess-link-box">
-                <div class="card-header" *ngIf="this.link != ''">
-                  <span class="badge bg-warning">1</span> Your message was encrypted successfully!
-                </div>
-
-                <div class="card-header" *ngIf="this.loadingMessage">
-                  Loading
-                </div>
-
-                <div class="card-body" *ngIf="this.link != ''">
-                  <h5 class="card-title">Your link</h5>
-                  <input  #myInput class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
-                  <button mat-raised-button color="primary" (click)="this.copyToClipboard(myInput)">Copy</button>
-                </div>
-              </div>
-              <div class="card-body" *ngIf="this.loadingMessage">
-                  <div class="lds-ripple"><div></div><div></div></div>
-              </div>
-              
+    <div class="card-body" *ngIf="this.loadingMessage">
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
     </div>
-    
+
+  </div>
+
 </div>
