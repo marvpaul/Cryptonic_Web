@@ -17,6 +17,7 @@ export class DisplayMessageComponent implements OnInit {
   hasAccepted = false;
   statusInfo = 'Loading';
   loading = false;
+  deletedInfo = ""; 
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -40,15 +41,15 @@ export class DisplayMessageComponent implements OnInit {
           var mes = bytes.toString(CryptoJS.enc.Utf8);
           this.decryptedText = mes;
           this.loading = false;
-          this.statusInfo = '<span class="badge bg-warning">1</span>  Message decrypted successfully!';
+          this.statusInfo = '<span class="badge bg-warning">1</span> Message decrypted successfully!';
 
           this.apiCalls.deleteMes(this.id)
             .subscribe(data => {
-              console.log("Deleted");
+              this.deletedInfo = '<i class="fas fa-check"></i> Deleted from server!';
             });
         } catch (e) {
           this.decryptedText = "Not valid anymore!";
-          this.statusInfo = "Expired";
+          this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
           this.loading = false;
         }
       },

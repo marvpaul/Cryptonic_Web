@@ -19,7 +19,10 @@
               </div>
           </div><br>
           <a href="/" mat-raised-button color="primary">Create another message</a>
+          <br><br>
+          <div [innerHTML] ="this.deletedInfo"></div>
         </div>
+        
       </div>
 
       <div *ngSwitchCase='false'>
