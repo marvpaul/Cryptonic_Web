@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/h
 import { HttpClient } from '@angular/common/http'; 
 
 import { Observable } from 'rxjs/Observable'; 
+import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'; 
 
@@ -13,21 +14,30 @@ export class ApiCallsService {
 
   constructor(private http: HttpClient) {  }
 
-  url = "https://dry-lake-13557.herokuapp.com/"
+  /**
+   * Request for saving a message on the server
+   * @param myMes the message as a string
+   */
   saveMes(myMes){
-    return this.http.post(this.url + 'api/saveMes', myMes)
+    return this.http.post(environment.apiEndpoint + 'api/saveMes', myMes)
       .map((response: Response) => response)
   }
 
+  /**
+   * Request to get a certain message from server by id
+   * @param id of a certain message
+   */
   getMes(id){
-    return this.http.get(this.url + 'api/getMes/' + id)
+    return this.http.get(environment.apiEndpoint+ 'api/getMes/' + id)
       .map((response: Response) => response)
   }
 
+  /**
+   * Request to delete a certain message from server by id
+   * @param id of a certain message
+   */
   deleteMes(id){
-    return this.http.get(this.url + 'api/deleteMes/' + id)
+    return this.http.get(environment.apiEndpoint + 'api/deleteMes/' + id)
       .map((response: Response) => response)
   }
-
-  //https://medium.com/@BaaniLeen/connecting-angular-5-app-to-mongodb-database-mean-stack-9b4b4232e219
 }
