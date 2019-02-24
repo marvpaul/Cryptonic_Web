@@ -13,7 +13,7 @@ if(process.env.connectionString == null || process.env.connectionString == ""){
 }
 
 
-var db = mongo.connect(connectionString, function(err, response){
+var db = mongo.connect(connectionString, { useNewUrlParser: true }, function(err, response){
     if(err){console.log(err);}
     else{ console.log("Connected to mongo db") }
 });
@@ -55,7 +55,7 @@ app.post('/api/saveMes', function(req, res){
 })
 
 app.get('/api/deleteMes/:id', function(req, res){
-    Message.remove({ _id: req.params.id}, function(err){
+    Message.deleteOne({ _id: req.params.id}, function(err){
         if(err){
             res.status(404).send(err); 
         } else{
@@ -76,6 +76,10 @@ app.get('/api/getMes/:id', function(req, res){
     });
 })
 
-app.listen(process.env.PORT || 8080, function(){
-    console.log("Server listen ..."); 
+app.listen(process.env.port || 8080, function(){
+    if(process.env.port != null){
+        console.log("Server listen to " + process.env.port); 
+    } else{
+        console.log("Server listen to " + 8080); 
+    }
 })

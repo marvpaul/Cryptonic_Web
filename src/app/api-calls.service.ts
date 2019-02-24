@@ -6,20 +6,21 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../environments/environment';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/do'; 
+import { Location} from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallsService {
-
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Request for saving a message on the server
    * @param myMes the message as a string
    */
   saveMes(myMes){
-    return this.http.post(environment.apiEndpoint + 'api/saveMes', myMes)
+    return this.http.post(Location.joinWithSlash(environment.apiEndpoint, 'api/saveMes'), myMes)
       .map((response: Response) => response)
   }
 
@@ -28,7 +29,7 @@ export class ApiCallsService {
    * @param id of a certain message
    */
   getMes(id){
-    return this.http.get(environment.apiEndpoint+ 'api/getMes/' + id)
+    return this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/getMes/' + id))
       .map((response: Response) => response)
   }
 
@@ -37,7 +38,7 @@ export class ApiCallsService {
    * @param id of a certain message
    */
   deleteMes(id){
-    return this.http.get(environment.apiEndpoint + 'api/deleteMes/' + id)
+    return this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/deleteMes/' + id))
       .map((response: Response) => response)
   }
 }

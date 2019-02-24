@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'https://dry-lake-13557.herokuapp.com/'
+  apiEndpoint: 'http://localhost:8080'
 };
 
 /*
