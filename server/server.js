@@ -101,7 +101,7 @@ app.get('/api/getMes/:id', function(req, res){
     });
 })
 
-app.listen(process.env.port || 8080, function(){
+app.listen(process.env.PORT || 8080, function(){
     if(process.env.port != null){
         console.log("Server listen to " + process.env.port); 
     } else{
