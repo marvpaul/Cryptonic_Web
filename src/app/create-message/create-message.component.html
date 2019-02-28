@@ -10,7 +10,8 @@
           <textarea matInput placeholder="Text to encrypt" class="text-area-input" [(ngModel)]="message" name="input"></textarea>
         </mat-form-field>
       </form>
-      <button mat-raised-button color="primary" (click)="sendMes()">Encrypt!</button>
+      <validation-time-chooser></validation-time-chooser><br>
+      <button mat-raised-button color="primary" (click)="sendMes()">Encrypt!</button><br>
     </div>
   </div>
   <br>

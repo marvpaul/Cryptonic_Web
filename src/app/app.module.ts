@@ -13,13 +13,15 @@ import { CreateMessageComponent } from './create-message/create-message.componen
 import { FooterComponent } from './footer/footer.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { ApiCallsService } from './api-calls.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ValidationTimeChooserComponent } from './validation-time-chooser/validation-time-chooser.component';
 
 const appRoutes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'message/:id/:hash', component: DisplayMessageComponent },
+  { path: 'message/:id/:pass', component: DisplayMessageComponent },
   { path: '', component: CreateMessageComponent }
 ];
 
@@ -32,7 +34,7 @@ const appRoutes: Routes = [
     DisplayMessageComponent,
     CreateMessageComponent,
     FooterComponent,
-
+    ValidationTimeChooserComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -41,7 +43,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatInputModule, FormsModule
+    MatButtonModule, MatCheckboxModule, MatToolbarModule, MatCardModule, MatInputModule, FormsModule, MatSelectModule
   ],
   providers: [ApiCallsService],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import CryptoJS from 'crypto-js/crypto-js';
 import { ApiCallsService } from '../api-calls.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
+
 @Component({
   selector: 'app-display-message',
   templateUrl: './display-message.component.html',
@@ -12,7 +13,7 @@ export class DisplayMessageComponent implements OnInit {
 
   constructor(private apiCalls: ApiCallsService, private activatedRoute: ActivatedRoute) { }
   id = "";
-  hash = "";
+  pass = "";
   decryptedText = "";
   hasAccepted = false;
   statusInfo = 'Loading';
@@ -22,7 +23,7 @@ export class DisplayMessageComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params.id;
-      this.hash = params.hash;
+      this.pass = params.pass;
     });
   }
 
@@ -33,27 +34,26 @@ export class DisplayMessageComponent implements OnInit {
 
   getMes() {
     this.loading = true; 
-    
-    this.apiCalls.getMes(this.id)
-      .subscribe(data => {
-        try {
-          var bytes = CryptoJS.AES.decrypt((<any>data).message, this.hash);
+    //TODO: Error handling does not work!
+    try {
+      let mess = this.apiCalls.getMes(this.id);
+      mess.subscribe((data: any) => {
+        if(data === null){
+          this.decryptedText = "Not found!"; 
+          this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
+          this.loading = false;
+        } else{
+          var bytes = CryptoJS.AES.decrypt((<any>data).message, this.pass);
           var mes = bytes.toString(CryptoJS.enc.Utf8);
           this.decryptedText = mes;
           this.loading = false;
           this.statusInfo = '<span class="badge bg-warning">1</span> Message decrypted successfully!';
-
-          this.apiCalls.deleteMes(this.id)
-            .subscribe(data => {
-              this.deletedInfo = '<i class="fas fa-check"></i> Deleted from server!';
-            });
-        } catch (e) {
-          this.decryptedText = "Not valid anymore!";
-          this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
-          this.loading = false;
-        }
-      },
-        error => { this.decryptedText = "Not found!" });
+          this.deletedInfo = '<i class="fas fa-check"></i> Deleted from server!';
+        }});
+    } catch (e) {
+      this.decryptedText = "Not valid anymore!";
+      this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
+      this.loading = false;
+    }
   }
-
 }

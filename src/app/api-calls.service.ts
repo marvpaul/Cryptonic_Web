@@ -29,8 +29,11 @@ export class ApiCallsService {
    * @param id of a certain message
    */
   getMes(id){
-    return this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/getMes/' + id))
+      console.log(Location.joinWithSlash(environment.apiEndpoint, 'api/getMes/' + id)); 
+      let response = this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/getMes/' + id))
       .map((response: Response) => response)
+      return response; 
+
   }
 
   /**

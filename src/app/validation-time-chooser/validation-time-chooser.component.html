@@ -1,0 +1,8 @@
+<h2>Choose expiration time</h2>
+<mat-form-field>
+  <mat-select [(value)]="selected">
+    <mat-option *ngFor="let date of exirationDates" [value]="date.value">
+      {{date.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
