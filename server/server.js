@@ -1,5 +1,5 @@
 var express = require('express'); 
-var path = require('path'); 
+// var path = require('path');
 var bodyParser = require('body-parser'); 
 var mongo = require('mongoose'); 
 
@@ -13,9 +13,12 @@ if(process.env.connectionString == null || process.env.connectionString == ""){
 }
 
 
-var db = mongo.connect(connectionString, { useNewUrlParser: true }, function(err, response){
-    if(err){console.log(err);}
-    else{ console.log("Connected to mongo db") }
+mongo.connect(connectionString, { useNewUrlParser: true }, function(err){
+    if(err){
+        console.log(err);
+    } else {
+        console.log("Connected to mongo db")
+    }
 });
 
 var app = express(); 
@@ -24,7 +27,7 @@ app.use(bodyParser.json({limit: '5mb'}));
 app.use(bodyParser.urlencoded({extended: true}))
 
 
-app.use(function(req, res, next){
+app.use(function(_, res, next){
     res.setHeader('Access-Control-Allow-Origin', '*'); 
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type'); 
@@ -39,17 +42,17 @@ var MessagesSchema = new mongo.Schema({
 });
 
 
-var Message = mongo.model('Message', MessagesSchema); 
+var Message = mongo.model('Message', MessagesSchema);
 
 /**
  * Endpoint for posting new messages into the database.
  */
-app.post('/api/saveMes', function(req, res){
+app.post('/api/message', function(req, res){
 
     var mod = new Message(req.body); 
     console.log(mod);
     mod.save(function(err, data){
-        if(err){
+        if (err){
             res.status(404).send(err);  
         } else{
             res.send({data: data.id});
@@ -60,7 +63,7 @@ app.post('/api/saveMes', function(req, res){
 /**
  * Endpoint for deleting a message given a certrain id.
  */
-app.get('/api/deleteMes/:id', function(req, res){
+app.delete('/api/message/:id', function(req, res){
     Message.deleteOne({ _id: req.params.id}, function(err){
         if(err){
             res.status(404).send(err); 
@@ -76,24 +79,25 @@ app.get('/api/deleteMes/:id', function(req, res){
  * the message is loaded from database. In case the message is expired or no message with a certain id exists, 
  * null is returned. Otherwhise the encrypted message object is returned. 
  */
-app.get('/api/getMes/:id', function(req, res){
+app.get('/api/message/:id', function(req, res){
     var id = req.params.id; 
     console.log("Search for: ", id);
     Message.findById(id, function (err, data) { 
         if(err || data === null){
             console.log("Message not found");
-            res.send(null); 
-        } else{
+            res.sendStatus(404);
+        } else {
             Message.deleteOne({_id: id}, function(err) {
                 if (!err) {
                     console.log("Deleted message " + id);
                 }
                 else {
                     console.log(err);
-            }});
+                }
+            });
             let now = new Date().getTime(); 
             if(data.expirationTimestamp != null && data.expirationTimestamp < now){
-                res.send(null);
+                res.sendStatus(410); // HTTP/1.1 Gone 
             } else{
                 res.send(data); 
             }
