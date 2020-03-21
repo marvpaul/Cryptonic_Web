@@ -54,7 +54,7 @@ app.delete('/api/message/:id', function (req, res) {
     if (err) {
       res.status(404).send(err)
     } else {
-      console.log('Deleted message ' + req.params.id)
+      console.log('Deleted message: ' + req.params.id)
       res.send({ data: 'Deleted' })
     }
   })
@@ -75,7 +75,7 @@ app.get('/api/message/:id', function (req, res) {
     } else {
       Message.deleteOne({ _id: id }, function (err) {
         if (!err) {
-          console.log('Deleted message ' + id)
+          console.log('Deleted message: ' + id)
         } else {
           console.log(err)
         }
