@@ -1,0 +1,37 @@
+{
+  "name": "cryptonic-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvpaul/Cryptonic_Web.git"
+  },
+  "author": "marvpaul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvpaul/Cryptonic_Web/issues"
+  },
+  "homepage": "https://github.com/marvpaul/Cryptonic_Web#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.5"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2"
+  }
+}
