@@ -20,7 +20,7 @@ export class ApiCallsService {
    * @param myMes the message as a string
    */
   saveMes(myMes){
-    return this.http.post(Location.joinWithSlash(environment.apiEndpoint, 'api/saveMes'), myMes)
+    return this.http.post(Location.joinWithSlash(environment.apiEndpoint, 'api/message'), myMes)
       .map((response: Response) => response)
   }
 
@@ -29,8 +29,7 @@ export class ApiCallsService {
    * @param id of a certain message
    */
   getMes(id){ 
-      let response = this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/getMes/' + id))
-      .map((response: Response) => response)
+      let response = this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/message/' + id));
       return response; 
 
   }
@@ -40,7 +39,7 @@ export class ApiCallsService {
    * @param id of a certain message
    */
   deleteMes(id){
-    return this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/deleteMes/' + id))
+    return this.http.get(Location.joinWithSlash(environment.apiEndpoint, 'api/message/' + id))
       .map((response: Response) => response)
   }
 }

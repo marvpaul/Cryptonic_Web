@@ -11,7 +11,7 @@
         </mat-form-field>
       </form>
       <validation-time-chooser></validation-time-chooser><br>
-      <button mat-raised-button color="primary" (click)="sendMes()">Encrypt!</button><br>
+      <button mat-raised-button color="primary" id="send-btn" (click)="sendMes()">Encrypt!</button><br>
     </div>
   </div>
   <br>
@@ -28,8 +28,8 @@
 
       <div class="card-body" *ngIf="this.link != ''">
         <h5 class="card-title">Your link</h5>
-        <input #myInput class="card-text link-placeholder" value="{{this.link}}" readonly> <br><br>
-        <button mat-raised-button color="primary" (click)="this.copyToClipboard(myInput)">Copy</button>
+        <input #myInput class="card-text link-placeholder" id="message-link" value="{{this.link}}" readonly> <br><br>
+        <button mat-raised-button color="primary" id="copy-btn" (click)="this.copyToClipboard(myInput)">Copy</button>
       </div>
     </div>
     <div class="card-body" *ngIf="this.loadingMessage">

@@ -34,26 +34,25 @@ export class DisplayMessageComponent implements OnInit {
 
   getMes() {
     this.loading = true; 
-    //TODO: Error handling does not work!
-    try {
       let mess = this.apiCalls.getMes(this.id);
-      mess.subscribe((data: any) => {
-        if(data === null){
-          this.decryptedText = "Not found!"; 
-          this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
-          this.loading = false;
-        } else{
-          var bytes = CryptoJS.AES.decrypt((<any>data).message, this.pass);
+      mess.subscribe(
+        data => {var bytes = CryptoJS.AES.decrypt((<any>data).message, this.pass);
           var mes = bytes.toString(CryptoJS.enc.Utf8);
           this.decryptedText = mes;
           this.loading = false;
           this.statusInfo = '<span class="badge bg-warning">1</span> Message decrypted successfully!';
-          this.deletedInfo = '<i class="fas fa-check"></i> Deleted from server!';
-        }});
-    } catch (e) {
-      this.decryptedText = "Not valid anymore!";
-      this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
-      this.loading = false;
-    }
+          this.deletedInfo = '<i class="fas fa-check"></i> Deleted from server!';},
+        error => {
+          if(error.status === 404){
+            this.decryptedText = "Not found!"; 
+            this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
+            this.loading = false;
+          } else if(error.status === 410){
+            this.decryptedText = "Not valid anymore!";
+            this.statusInfo = '<span class="badge bg-warning">1</span> Expired';
+            this.loading = false;
+          }
+        }
+      );
   }
 }

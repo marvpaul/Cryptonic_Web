@@ -8,7 +8,7 @@
         <div class="card-body">
           <h5 class="card-title">Message</h5>
           <div class="card-text">
-            <div class="decrypted-text" *ngIf="!this.loading"> 
+            <div class="decrypted-text" id="message" *ngIf="!this.loading"> 
                 {{decryptedText}}
             </div>
             <div *ngIf="this.loading"> 
@@ -31,7 +31,7 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">Please comfirm</h5>
-          <button mat-raised-button color="primary" (click)="this.accept()" class="btn btn-primary">Yes, I want to
+          <button mat-raised-button color="primary" id="confirm-btn" (click)="this.accept()" class="btn btn-primary">Yes, I want to
             read!</button>
         </div>
       </div>

@@ -6,7 +6,7 @@ var cors = require('cors')
 let connectionString = ''
 if (process.env.connectionString == null || process.env.connectionString == '') {
   var fs = require('fs')
-  var config = JSON.parse(fs.readFileSync('config.json'))
+  var config = JSON.parse(fs.readFileSync('server/config.json'))
   connectionString = config.connectionString
 } else {
   connectionString = process.env.connectionString
@@ -90,11 +90,4 @@ app.get('/api/message/:id', function (req, res) {
   })
 })
 
-/*app.listen(process.env.PORT || 8080, function () {
-  if (process.env.port != null) {
-    console.log('Server listen to ' + process.env.port)
-  } else {
-    console.log('Server listen to ' + 8080)
-  }
-})*/
 module.exports = app
